@@ -1,0 +1,729 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Calculs en ligne 3e — 2</title>
+<meta name="description" content="Deuxième série : 24 nouveaux calculs (différents des deux fiches papier) sur les nombres relatifs et les fractions, avec correction détaillée." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #f4f6fa;
+    --surface: #ffffff;
+    --surface-2: #eef2f8;
+    --border: #d8e0ec;
+    --text: #1b2433;
+    --text-muted: #5c6b82;
+    --accent: #1f4e79;
+    --accent-strong: #143552;
+    --accent-soft: #e3ecf6;
+    --success: #1e7a4b;
+    --success-soft: #e4f4ea;
+    --danger: #b3261e;
+    --danger-soft: #fbeaea;
+    --focus: #2f6db0;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1620;
+      --surface: #17212e;
+      --surface-2: #1d2836;
+      --border: #29384b;
+      --text: #e7edf6;
+      --text-muted: #93a4bc;
+      --accent: #7fb0e0;
+      --accent-strong: #a9cdf0;
+      --accent-soft: #1d3350;
+      --success: #5fce93;
+      --success-soft: #12331f;
+      --danger: #f2897f;
+      --danger-soft: #3a1917;
+      --focus: #7fb0e0;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0f1620;
+    --surface: #17212e;
+    --surface-2: #1d2836;
+    --border: #29384b;
+    --text: #e7edf6;
+    --text-muted: #93a4bc;
+    --accent: #7fb0e0;
+    --accent-strong: #a9cdf0;
+    --accent-soft: #1d3350;
+    --success: #5fce93;
+    --success-soft: #12331f;
+    --danger: #f2897f;
+    --danger-soft: #3a1917;
+    --focus: #7fb0e0;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding-inline: 16px;
+    padding-block: 28px 64px;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(26px, 5vw, 34px);
+    line-height: 1.15;
+    margin: 6px 0 0;
+    text-wrap: balance;
+    color: var(--text);
+  }
+
+  .intro {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 60ch;
+    margin-top: 8px;
+  }
+
+  .scoreboard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+  }
+
+  .score-chip {
+    font-family: "IBM Plex Mono", monospace;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--accent-strong);
+    white-space: nowrap;
+  }
+
+  .score-chip small {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 500;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 1px;
+  }
+
+  .progress-track {
+    flex: 1 1 160px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.35s ease;
+  }
+
+  .btn {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 600;
+    font-size: 13.5px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .btn:hover { border-color: var(--accent); }
+  .btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .btn-reset {
+    color: var(--text-muted);
+  }
+
+  section.group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .group-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--text);
+  }
+
+  .group-count {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .item[data-state="correct"] { border-color: color-mix(in srgb, var(--success) 45%, var(--border)); }
+  .item[data-state="incorrect"] { border-color: color-mix(in srgb, var(--danger) 45%, var(--border)); }
+
+  .item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .item-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-muted);
+    width: 20px;
+    flex: 0 0 auto;
+  }
+
+  .expr {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.18em;
+  }
+
+  .expr .eq { color: var(--text-muted); margin-left: 0.1em; }
+
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    vertical-align: middle;
+    margin: 0 0.05em;
+  }
+  .frac .num, .frac .den {
+    padding: 0 0.15em;
+  }
+  .frac .num { border-bottom: 1.4px solid currentColor; padding-bottom: 1px; }
+  .frac .den { padding-top: 1px; }
+  .frac-sign { margin-right: 0.05em; }
+
+  .answer-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+  }
+
+  .answer-field input {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+    width: 6.5em;
+    padding: 6px 9px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .answer-field input:focus-visible {
+    outline: none;
+    border-color: var(--focus);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent);
+  }
+
+  .item[data-state="correct"] .answer-field input { border-color: var(--success); background: var(--success-soft); }
+  .item[data-state="incorrect"] .answer-field input { border-color: var(--danger); background: var(--danger-soft); }
+
+  .check-btn {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  .check-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .status {
+    font-size: 15px;
+    width: 1.3em;
+    text-align: center;
+    flex: 0 0 auto;
+  }
+  .status.correct { color: var(--success); }
+  .status.incorrect { color: var(--danger); }
+
+  .hint {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .corr-toggle {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-family: "Public Sans", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 2px 0;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    text-underline-offset: 3px;
+  }
+  .corr-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .correction {
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+    border-radius: 10px;
+    padding: 10px 14px 12px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .correction .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 6px 0 2px;
+  }
+
+  .correction .step-line {
+    font-family: "IBM Plex Mono", monospace;
+  }
+
+  .correction .step-line.final {
+    font-weight: 600;
+    color: var(--accent-strong);
+    margin-top: 2px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    padding-top: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .item-row { gap: 8px; }
+    .answer-field input { width: 5.4em; }
+  }
+</style>
+
+<div class="wrap">
+  <div>
+    <div class="kicker">3e — Entraînement (série 2)</div>
+    <h1>Calculs : nombres relatifs et fractions</h1>
+    <p class="intro">
+      Encore 24 calculs inédits, différents des deux fiches papier et du premier exerciseur, pour aller plus loin.
+      Les fractions vont un peu plus loin : plusieurs multiplications et divisions à la suite. Réponds, clique sur
+      « Vérifier », et ouvre la correction détaillée si besoin. Pour une fraction, écris-la sous la forme
+      <strong>a/b</strong> (ex. <strong>-3/4</strong>).
+    </p>
+  </div>
+
+  <div class="scoreboard">
+    <div class="score-chip" id="score-chip">0 / 24<small>calculs corrects</small></div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <button class="btn btn-reset" id="reset-btn" type="button">Recommencer</button>
+  </div>
+
+  <section class="group" id="group-1">
+    <div class="group-head">
+      <span class="group-title">Exercice 1 — Nombres relatifs</span>
+      <span class="group-count">12 calculs</span>
+    </div>
+    <div class="items" id="items-1"></div>
+  </section>
+
+  <section class="group" id="group-2">
+    <div class="group-head">
+      <span class="group-title">Exercice 2 — Fractions</span>
+      <span class="group-count">12 calculs</span>
+    </div>
+    <div class="items" id="items-2"></div>
+  </section>
+
+  <footer>Exerciseur 2 « Calculs : nombres relatifs et fractions » — 3e — calculs complémentaires aux fiches papier</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- Data ----------
+  // type: "number" -> answer is a plain value (tolerant float compare)
+  // type: "fraction" -> answer is {n, d} already reduced, d > 0
+  var EX1 = [
+    { id: "1a", expr: "A = (−6) + (+3) − (−8)", type: "number", answer: 5,
+      steps: ["A = (−6) + (+3) − (−8)", "A = (−3) − (−8)", "A = (−3) + 8", "A = 5"] },
+    { id: "1b", expr: "B = 9 − (+5) + (−6)", type: "number", answer: -2,
+      steps: ["B = 9 − (+5) + (−6)", "B = 9 − 5 − 6", "B = 4 − 6", "B = −2"] },
+    { id: "1c", expr: "C = (−7) × (+6)", type: "number", answer: -42,
+      steps: ["C = (−7) × (+6)", "C = −42"] },
+    { id: "1d", expr: "D = (−63) ÷ (−7)", type: "number", answer: 9,
+      steps: ["D = (−63) ÷ (−7)", "D = 9"] },
+    { id: "1e", expr: "E = 10 − [5 + (−2) × 4]", type: "number", answer: 13,
+      steps: ["E = 10 − [5 + (−2) × 4]", "E = 10 − [5 + (−8)]", "E = 10 − (−3)", "E = 13"] },
+    { id: "1f", expr: "F = −6 × (−4 − 5) + 3", type: "number", answer: 57,
+      steps: ["F = −6 × (−4 − 5) + 3", "F = −6 × (−9) + 3", "F = 54 + 3", "F = 57"] },
+    { id: "1g", expr: "G = (−9 + 4) × (−5 − 3)", type: "number", answer: 40,
+      steps: ["G = (−9 + 4) × (−5 − 3)", "G = (−5) × (−8)", "G = 40"] },
+    { id: "1h", expr: "H = 3 × (−2) × (−1,5) × (2) × 0,5 × (−4)", type: "number", answer: -36,
+      steps: ["H = 3 × (−2) × (−1,5) × (2) × 0,5 × (−4)", "H = (3 × (−2) × (−1,5)) × (2 × 0,5 × (−4))", "H = 9 × (−4)", "H = −36"] },
+    { id: "1i", expr: "I = −21 ÷ (−3) + [(−5) × (−2,5)]", type: "number", answer: 19.5,
+      steps: ["I = −21 ÷ (−3) + [(−5) × (−2,5)]", "I = 7 + 12,5", "I = 19,5"] },
+    { id: "1j", expr: "J = (+6,2) + (−4) + (−2,2)", type: "number", answer: 0,
+      steps: ["J = (+6,2) + (−4) + (−2,2)", "J = 2,2 − 2,2", "J = 0"] },
+    { id: "1k", expr: "K = (−6) × (−3,5)", type: "number", answer: 21,
+      steps: ["K = (−6) × (−3,5)", "K = 21"] },
+    { id: "1l", expr: "L = 20 − [(−5) × (−2) + 6]", type: "number", answer: 4,
+      steps: ["L = 20 − [(−5) × (−2) + 6]", "L = 20 − [10 + 6]", "L = 20 − 16", "L = 4"] }
+  ];
+
+  var EX2 = [
+    { id: "2a", expr: "16/21 ÷ 8/9", type: "fraction", answer: { n: 6, d: 7 },
+      steps: ["16/21 ÷ 8/9 = 16/21 × 9/8", "16/21 ÷ 8/9 = 144/168", "16/21 ÷ 8/9 = 6/7"] },
+    { id: "2b", expr: "7/10 ÷ 3/5", type: "fraction", answer: { n: 7, d: 6 },
+      steps: ["7/10 ÷ 3/5 = 7/10 × 5/3", "7/10 ÷ 3/5 = 35/30", "7/10 ÷ 3/5 = 7/6"] },
+    { id: "2c", expr: "5/9 × 6/25", type: "fraction", answer: { n: 2, d: 15 },
+      steps: ["5/9 × 6/25 = 30/225", "5/9 × 6/25 = 2/15"] },
+    { id: "2d", expr: "9/14 ÷ 3/7", type: "fraction", answer: { n: 3, d: 2 },
+      steps: ["9/14 ÷ 3/7 = 9/14 × 7/3", "9/14 ÷ 3/7 = 63/42", "9/14 ÷ 3/7 = 3/2"] },
+    { id: "2e", expr: "3/8 × 4/9 × 2/5", type: "fraction", answer: { n: 1, d: 15 },
+      steps: ["3/8 × 4/9 × 2/5 = 24/360", "3/8 × 4/9 × 2/5 = 1/15"] },
+    { id: "2f", expr: "7/12 ÷ 14/9", type: "fraction", answer: { n: 3, d: 8 },
+      steps: ["7/12 ÷ 14/9 = 7/12 × 9/14", "7/12 ÷ 14/9 = 63/168", "7/12 ÷ 14/9 = 3/8"] },
+    { id: "2g", expr: "8/15 × 5/12", type: "fraction", answer: { n: 2, d: 9 },
+      steps: ["8/15 × 5/12 = 40/180", "8/15 × 5/12 = 2/9"] },
+    { id: "2h", expr: "13/14 ÷ 26/7", type: "fraction", answer: { n: 1, d: 4 },
+      steps: ["13/14 ÷ 26/7 = 13/14 × 7/26", "13/14 ÷ 26/7 = 91/364", "13/14 ÷ 26/7 = 1/4"] },
+    { id: "2i", expr: "−9/10 × 5/12", type: "fraction", answer: { n: -3, d: 8 },
+      steps: ["−9/10 × 5/12 = −45/120", "−9/10 × 5/12 = −3/8"] },
+    { id: "2j", expr: "18/35 × 25/27", type: "fraction", answer: { n: 10, d: 21 },
+      steps: ["18/35 × 25/27 = 450/945", "18/35 × 25/27 = 10/21"] },
+    { id: "2k", expr: "4/15 × 25/8", type: "fraction", answer: { n: 5, d: 6 },
+      steps: ["4/15 × 25/8 = 100/120", "4/15 × 25/8 = 5/6"] },
+    { id: "2l", expr: "−7/9 ÷ 14/27", type: "fraction", answer: { n: -3, d: 2 },
+      steps: ["−7/9 ÷ 14/27 = −7/9 × 27/14", "−7/9 ÷ 14/27 = −189/126", "−7/9 ÷ 14/27 = −3/2"] }
+  ];
+
+  var ALL = EX1.concat(EX2);
+  var TOTAL = ALL.length;
+  var STORAGE_KEY = "exerciseur-3e-calculs-serie2-v1";
+
+  // ---------- Fraction display (renders "a/b" tokens as a stacked fraction) ----------
+  function renderExprHTML(text) {
+    var out = "";
+    var i = 0;
+    var re = /(−|-)?(\d+)\/(\d+)/g;
+    var m, last = 0;
+    while ((m = re.exec(text))) {
+      out += escapeHTML(text.slice(last, m.index));
+      var sign = m[1] ? '<span class="frac-sign">−</span>' : "";
+      out += sign + '<span class="frac"><span class="num">' + m[2] + '</span><span class="den">' + m[3] + "</span></span>";
+      last = re.lastIndex;
+    }
+    out += escapeHTML(text.slice(last));
+    return out;
+  }
+
+  function escapeHTML(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // ---------- Answer parsing ----------
+  function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var t = b; b = a % b; a = t; } return a || 1; }
+
+  function parseNumber(raw) {
+    if (!raw) return null;
+    var s = raw.trim().replace(/−/g, "-").replace(",", ".");
+    if (s === "" || s === "-") return null;
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    return parseFloat(s);
+  }
+
+  function parseFraction(raw) {
+    if (!raw) return null;
+    var s = raw.trim().replace(/−/g, "-").replace(/\s+/g, "");
+    if (s === "") return null;
+    if (s.indexOf("/") !== -1) {
+      var parts = s.split("/");
+      if (parts.length !== 2) return null;
+      var n = parseInt(parts[0], 10), d = parseInt(parts[1], 10);
+      if (!isFinite(n) || !isFinite(d) || d === 0 || String(n) !== parts[0].replace(/^\+/, "") && parts[0] !== String(n)) {
+        // still allow "+3" style numerator
+      }
+      if (isNaN(n) || isNaN(d) || d === 0) return null;
+      if (d < 0) { d = -d; n = -n; }
+      var g = gcd(n, d);
+      return { n: n / g, d: d / g, value: n / d };
+    }
+    // decimal fallback (e.g. a student answers "0.3" instead of "3/10")
+    var num = parseNumber(s);
+    if (num === null) return null;
+    return { n: null, d: null, value: num };
+  }
+
+  function fractionsEqual(target, parsed) {
+    if (parsed.n !== null) {
+      return parsed.n === target.n && parsed.d === target.d;
+    }
+    return Math.abs(parsed.value - target.n / target.d) < 0.0008;
+  }
+
+  // ---------- State ----------
+  var state = { answers: {}, results: {}, openCorrections: {} };
+
+  function loadLocal() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") return parsed;
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  function saveLocal() {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {}
+  }
+
+  // ---------- Rendering ----------
+  function buildItem(item) {
+    var el = document.createElement("div");
+    el.className = "item";
+    el.id = "item-" + item.id;
+
+    var row = document.createElement("div");
+    row.className = "item-row";
+
+    var label = document.createElement("div");
+    label.className = "item-label";
+    label.textContent = item.id.slice(1) + ")";
+    row.appendChild(label);
+
+    var expr = document.createElement("div");
+    expr.className = "expr";
+    expr.innerHTML = renderExprHTML(item.expr) + (item.type === "fraction" ? '<span class="eq">=</span>' : "");
+    row.appendChild(expr);
+
+    var field = document.createElement("div");
+    field.className = "answer-field";
+
+    var input = document.createElement("input");
+    input.type = "text";
+    input.id = "input-" + item.id;
+    input.autocomplete = "off";
+    input.spellcheck = false;
+    input.placeholder = item.type === "fraction" ? "a/b" : "…";
+    input.setAttribute("aria-label", "Réponse pour l'exercice " + item.id);
+
+    var checkBtn = document.createElement("button");
+    checkBtn.type = "button";
+    checkBtn.className = "check-btn";
+    checkBtn.textContent = "Vérifier";
+
+    var status = document.createElement("span");
+    status.className = "status";
+    status.setAttribute("aria-live", "polite");
+
+    field.appendChild(input);
+    field.appendChild(checkBtn);
+    field.appendChild(status);
+    row.appendChild(field);
+    el.appendChild(row);
+
+    var corrToggle = document.createElement("button");
+    corrToggle.type = "button";
+    corrToggle.className = "corr-toggle";
+    corrToggle.textContent = "Voir la correction détaillée";
+
+    var corrPanel = document.createElement("div");
+    corrPanel.className = "correction";
+    corrPanel.hidden = true;
+    var stepsWrap = document.createElement("div");
+    stepsWrap.className = "steps";
+    item.steps.forEach(function (line, idx) {
+      var d = document.createElement("div");
+      d.className = "step-line" + (idx === item.steps.length - 1 ? " final" : "");
+      d.innerHTML = renderExprHTML(line);
+      stepsWrap.appendChild(d);
+    });
+    corrPanel.appendChild(stepsWrap);
+
+    el.appendChild(corrToggle);
+    el.appendChild(corrPanel);
+
+    function applyAnswerState() {
+      var res = state.results[item.id];
+      if (res === "correct") {
+        el.dataset.state = "correct";
+        status.textContent = "✓";
+        status.className = "status correct";
+      } else if (res === "incorrect") {
+        el.dataset.state = "incorrect";
+        status.textContent = "✕";
+        status.className = "status incorrect";
+      } else {
+        delete el.dataset.state;
+        status.textContent = "";
+        status.className = "status";
+      }
+    }
+
+    function doCheck() {
+      var raw = input.value;
+      state.answers[item.id] = raw;
+      var ok = false;
+      if (item.type === "number") {
+        var v = parseNumber(raw);
+        ok = v !== null && Math.abs(v - item.answer) < 0.0005;
+      } else {
+        var f = parseFraction(raw);
+        ok = f !== null && fractionsEqual(item.answer, f);
+      }
+      state.results[item.id] = ok ? "correct" : "incorrect";
+      applyAnswerState();
+      updateScore();
+      saveLocal();
+      if (!ok) {
+        corrPanel.hidden = false;
+        state.openCorrections[item.id] = true;
+        saveLocal();
+      }
+    }
+
+    checkBtn.addEventListener("click", doCheck);
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); doCheck(); }
+    });
+    input.addEventListener("input", function () {
+      if (el.dataset.state) {
+        delete el.dataset.state;
+        state.results[item.id] = undefined;
+        status.textContent = "";
+        status.className = "status";
+        updateScore();
+        saveLocal();
+      }
+    });
+
+    corrToggle.addEventListener("click", function () {
+      corrPanel.hidden = !corrPanel.hidden;
+      state.openCorrections[item.id] = !corrPanel.hidden;
+      saveLocal();
+    });
+
+    // restore
+    if (state.answers[item.id]) input.value = state.answers[item.id];
+    if (state.results[item.id]) applyAnswerState();
+    if (state.openCorrections[item.id]) corrPanel.hidden = false;
+
+    return el;
+  }
+
+  function updateScore() {
+    var correct = 0;
+    ALL.forEach(function (it) { if (state.results[it.id] === "correct") correct++; });
+    document.getElementById("score-chip").innerHTML = correct + " / " + TOTAL + "<small>calculs corrects</small>";
+    document.getElementById("progress-fill").style.width = Math.round((correct / TOTAL) * 100) + "%";
+  }
+
+  function renderAll() {
+    var host1 = document.getElementById("items-1");
+    var host2 = document.getElementById("items-2");
+    host1.innerHTML = "";
+    host2.innerHTML = "";
+    EX1.forEach(function (it) { host1.appendChild(buildItem(it)); });
+    EX2.forEach(function (it) { host2.appendChild(buildItem(it)); });
+    updateScore();
+  }
+
+  function resetAll() {
+    state = { answers: {}, results: {}, openCorrections: {} };
+    saveLocal();
+    renderAll();
+  }
+
+  document.getElementById("reset-btn").addEventListener("click", resetAll);
+
+  // ---------- Boot ----------
+  function start() {
+    var restored = loadLocal();
+    if (restored) state = restored;
+    if (!state.answers) state.answers = {};
+    if (!state.results) state.results = {};
+    if (!state.openCorrections) state.openCorrections = {};
+    renderAll();
+  }
+
+  start();
+})();
+</script>
+
+</body></html>
