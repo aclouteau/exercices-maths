@@ -1,0 +1,773 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Nombres relatifs — Révisions 4e</title>
+<meta name="description" content="Entraînement interactif : écriture simplifiée et calculs sur les nombres relatifs (4e), pour réviser — questions différentes de l'interrogation." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #f4f6fa;
+    --surface: #ffffff;
+    --surface-2: #eef2f8;
+    --border: #d8e0ec;
+    --text: #1b2433;
+    --text-muted: #5c6b82;
+    --accent: #1f4e79;
+    --accent-strong: #143552;
+    --accent-soft: #e3ecf6;
+    --success: #1e7a4b;
+    --success-soft: #e4f4ea;
+    --danger: #b3261e;
+    --danger-soft: #fbeaea;
+    --focus: #2f6db0;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1620;
+      --surface: #17212e;
+      --surface-2: #1d2836;
+      --border: #29384b;
+      --text: #e7edf6;
+      --text-muted: #93a4bc;
+      --accent: #7fb0e0;
+      --accent-strong: #a9cdf0;
+      --accent-soft: #1d3350;
+      --success: #5fce93;
+      --success-soft: #12331f;
+      --danger: #f2897f;
+      --danger-soft: #3a1917;
+      --focus: #7fb0e0;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0f1620;
+    --surface: #17212e;
+    --surface-2: #1d2836;
+    --border: #29384b;
+    --text: #e7edf6;
+    --text-muted: #93a4bc;
+    --accent: #7fb0e0;
+    --accent-strong: #a9cdf0;
+    --accent-soft: #1d3350;
+    --success: #5fce93;
+    --success-soft: #12331f;
+    --danger: #f2897f;
+    --danger-soft: #3a1917;
+    --focus: #7fb0e0;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding-inline: 16px;
+    padding-block: 28px 64px;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(26px, 5vw, 34px);
+    line-height: 1.15;
+    margin: 6px 0 0;
+    text-wrap: balance;
+    color: var(--text);
+  }
+
+  .intro {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 60ch;
+    margin-top: 8px;
+  }
+
+  .scoreboard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+  }
+
+  .score-chip {
+    font-family: "IBM Plex Mono", monospace;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--accent-strong);
+    white-space: nowrap;
+  }
+
+  .score-chip small {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 500;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 1px;
+  }
+
+  .progress-track {
+    flex: 1 1 160px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.35s ease;
+  }
+
+  .btn {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 600;
+    font-size: 13.5px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .btn:hover { border-color: var(--accent); }
+  .btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .btn-reset {
+    color: var(--text-muted);
+  }
+
+  section.group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .group-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--text);
+  }
+
+  .group-count {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .group-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: -4px 0 2px;
+  }
+
+  .item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .item[data-state="correct"] { border-color: color-mix(in srgb, var(--success) 45%, var(--border)); }
+  .item[data-state="incorrect"] { border-color: color-mix(in srgb, var(--danger) 45%, var(--border)); }
+
+  .item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .item-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-muted);
+    width: 20px;
+    flex: 0 0 auto;
+  }
+
+  .expr {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .answer-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+  }
+
+  .answer-field input {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+    width: 6.5em;
+    padding: 6px 9px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .answer-field input:focus-visible {
+    outline: none;
+    border-color: var(--focus);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent);
+  }
+
+  .item[data-state="correct"] .answer-field input { border-color: var(--success); background: var(--success-soft); }
+  .item[data-state="incorrect"] .answer-field input { border-color: var(--danger); background: var(--danger-soft); }
+
+  .check-btn {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  .check-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .status {
+    font-size: 15px;
+    width: 1.3em;
+    text-align: center;
+    flex: 0 0 auto;
+  }
+  .status.correct { color: var(--success); }
+  .status.incorrect { color: var(--danger); }
+
+  .choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .choice-btn {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13.5px;
+    font-variant-numeric: tabular-nums;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 7px 12px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .choice-btn:hover:not([disabled]) { border-color: var(--accent); }
+  .choice-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .choice-btn[disabled] { cursor: default; }
+  .choice-btn[data-state="correct"] { border-color: var(--success); background: var(--success-soft); color: var(--success); }
+  .choice-btn[data-state="incorrect"] { border-color: var(--danger); background: var(--danger-soft); color: var(--danger); }
+
+  .corr-toggle {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-family: "Public Sans", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 2px 0;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    text-underline-offset: 3px;
+  }
+  .corr-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .correction {
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+    border-radius: 10px;
+    padding: 10px 14px 12px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .correction .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 6px 0 2px;
+  }
+
+  .correction .step-line {
+    font-family: "IBM Plex Mono", monospace;
+  }
+
+  .correction .step-line.final {
+    font-weight: 600;
+    color: var(--accent-strong);
+    margin-top: 2px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    padding-top: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .item-row { gap: 8px; }
+    .answer-field input { width: 5.4em; }
+  }
+</style>
+
+<div class="wrap">
+  <div>
+    <div class="kicker">4e — Révisions</div>
+    <h1>Nombres relatifs : écriture simplifiée et calculs</h1>
+    <p class="intro">
+      20 questions pour réviser, avec des nombres différents de ceux de l'interrogation. Pas de piège : l'objectif
+      est de t'entraîner un peu, pas de refaire un contrôle entier. Pour l'exercice 1, clique sur la bonne écriture
+      simplifiée. Pour l'exercice 2, calcule et écris le résultat, puis clique sur « Vérifier ».
+    </p>
+  </div>
+
+  <div class="scoreboard">
+    <div class="score-chip" id="score-chip">0 / 20<small>réponses correctes</small></div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <button class="btn btn-reset" id="reset-btn" type="button">Recommencer</button>
+  </div>
+
+  <section class="group" id="group-1">
+    <div class="group-head">
+      <span class="group-title">Exercice 1 — Écriture simplifiée</span>
+      <span class="group-count">8 questions</span>
+    </div>
+    <p class="group-note">Choisis l'écriture simplifiée (sans parenthèses) de chaque expression.</p>
+    <div class="items" id="items-1"></div>
+  </section>
+
+  <section class="group" id="group-2">
+    <div class="group-head">
+      <span class="group-title">Exercice 2 — Calculer</span>
+      <span class="group-count">12 calculs</span>
+    </div>
+    <div class="items" id="items-2"></div>
+  </section>
+
+  <footer>Exerciseur de révision « Nombres relatifs » — 4e — pour t'entraîner avant l'interrogation, pas à sa place</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- Data ----------
+  // Exercice 1 (QCM) : choices[0] est toujours la bonne reponse, on melange a l'affichage.
+  var EX1 = [
+    { id: "1a", expr: "(+7) + (−4) =", choices: ["7 − 4", "7 + 4", "−7 − 4", "−7 + 4"],
+      steps: ["(+7) + (−4) = 7 − 4", "« + » devant une parenthèse ne change pas son signe."] },
+    { id: "1b", expr: "(−6) − (+9) =", choices: ["−6 − 9", "−6 + 9", "6 − 9", "6 + 9"],
+      steps: ["(−6) − (+9) = −6 − 9", "« − » devant une parenthèse positive donne un « − »."] },
+    { id: "1c", expr: "(−12) + (−3) =", choices: ["−12 − 3", "−12 + 3", "12 − 3", "12 + 3"],
+      steps: ["(−12) + (−3) = −12 − 3", "« + » devant une parenthèse négative donne un « − »."] },
+    { id: "1d", expr: "(+15) − (−8) =", choices: ["15 + 8", "15 − 8", "−15 + 8", "−15 − 8"],
+      steps: ["(+15) − (−8) = 15 + 8", "« − » devant une parenthèse négative donne un « + »."] },
+    { id: "1e", expr: "(−4) − (+10) + (−2) =", choices: ["−4 − 10 − 2", "−4 + 10 − 2", "−4 − 10 + 2", "−4 + 10 + 2"],
+      steps: ["(−4) − (+10) + (−2) = −4 − 10 − 2", "On simplifie chaque signe l'un après l'autre."] },
+    { id: "1f", expr: "(+6) + (−9) − (−3) =", choices: ["6 − 9 + 3", "6 + 9 + 3", "6 − 9 − 3", "6 + 9 − 3"],
+      steps: ["(+6) + (−9) − (−3) = 6 − 9 + 3", "On simplifie chaque signe l'un après l'autre."] },
+    { id: "1g", expr: "(−18) − (−5) =", choices: ["−18 + 5", "−18 − 5", "18 + 5", "18 − 5"],
+      steps: ["(−18) − (−5) = −18 + 5", "« − » devant une parenthèse négative donne un « + »."] },
+    { id: "1h", expr: "(+2,5) + (−7,5) =", choices: ["2,5 − 7,5", "2,5 + 7,5", "−2,5 − 7,5", "−2,5 + 7,5"],
+      steps: ["(+2,5) + (−7,5) = 2,5 − 7,5", "« + » devant une parenthèse négative donne un « − »."] }
+  ];
+
+  var EX2 = [
+    { id: "2a", expr: "A = 11 − 17", answer: -6, steps: ["A = 11 − 17", "A = −6"] },
+    { id: "2b", expr: "B = −8 + 13", answer: 5, steps: ["B = −8 + 13", "B = 13 − 8", "B = 5"] },
+    { id: "2c", expr: "C = −6 − 5 + 10", answer: -1, steps: ["C = −6 − 5 + 10", "C = 10 − 6 − 5", "C = 10 − 11", "C = −1"] },
+    { id: "2d", expr: "D = 18 − 25 + 4", answer: -3, steps: ["D = 18 − 25 + 4", "D = 18 + 4 − 25", "D = 22 − 25", "D = −3"] },
+    { id: "2e", expr: "E = −9 + 15 − 7 + 2", answer: 1, steps: ["E = −9 + 15 − 7 + 2", "E = 15 + 2 − 9 − 7", "E = 17 − 16", "E = 1"] },
+    { id: "2f", expr: "F = 7,5 − 10 + 1,5 − 2", answer: -3, steps: ["F = 7,5 − 10 + 1,5 − 2", "F = 7,5 + 1,5 − 10 − 2", "F = 9 − 12", "F = −3"] },
+    { id: "2g", expr: "G = −11 + 6,5 − 9 + 3,25 − 4", answer: -14.25, steps: ["G = −11 + 6,5 − 9 + 3,25 − 4", "G = 6,5 + 3,25 − 11 − 9 − 4", "G = 9,75 − 24", "G = −14,25"] },
+    { id: "2h", expr: "H = 4 − 16", answer: -12, steps: ["H = 4 − 16", "H = −12"] },
+    { id: "2i", expr: "I = −5 + 9", answer: 4, steps: ["I = −5 + 9", "I = 9 − 5", "I = 4"] },
+    { id: "2j", expr: "J = −3 − 4 + 11", answer: 4, steps: ["J = −3 − 4 + 11", "J = 11 − 3 − 4", "J = 11 − 7", "J = 4"] },
+    { id: "2k", expr: "K = 20 − 28 + 5", answer: -3, steps: ["K = 20 − 28 + 5", "K = 20 + 5 − 28", "K = 25 − 28", "K = −3"] },
+    { id: "2l", expr: "L = −6,5 + 10 − 3,5 + 1", answer: 1, steps: ["L = −6,5 + 10 − 3,5 + 1", "L = 10 + 1 − 6,5 − 3,5", "L = 11 − 10", "L = 1"] }
+  ];
+
+  var ALL_IDS = EX1.map(function (it) { return it.id; }).concat(EX2.map(function (it) { return it.id; }));
+  var TOTAL = ALL_IDS.length;
+  var STORAGE_KEY = "exerciseur-4e-nombres-relatifs-revisions-v1";
+
+  // ---------- Answer parsing (Exercice 2) ----------
+  function parseNumber(raw) {
+    if (!raw) return null;
+    var s = raw.trim().replace(/−/g, "-").replace(",", ".");
+    if (s === "" || s === "-") return null;
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    return parseFloat(s);
+  }
+
+  // ---------- Shuffle (deterministic per item id, so la position ne change pas au fil des sessions) ----------
+  function seedFromId(id) {
+    var h = 0;
+    for (var i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
+    return h;
+  }
+
+  function shuffledIndices(n, seed) {
+    var idx = [];
+    for (var i = 0; i < n; i++) idx.push(i);
+    var s = seed;
+    for (var j = idx.length - 1; j > 0; j--) {
+      s = (s * 1103515245 + 12345) >>> 0;
+      var k = s % (j + 1);
+      var tmp = idx[j]; idx[j] = idx[k]; idx[k] = tmp;
+    }
+    return idx;
+  }
+
+  // ---------- State ----------
+  var state = { answers: {}, results: {}, openCorrections: {} };
+
+  function loadLocal() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") return parsed;
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  function saveLocal() {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {}
+  }
+
+  function updateScore() {
+    var correct = 0;
+    ALL_IDS.forEach(function (id) { if (state.results[id] === "correct") correct++; });
+    document.getElementById("score-chip").innerHTML = correct + " / " + TOTAL + "<small>réponses correctes</small>";
+    document.getElementById("progress-fill").style.width = Math.round((correct / TOTAL) * 100) + "%";
+  }
+
+  function buildCorrectionPanel(el, steps) {
+    var corrToggle = document.createElement("button");
+    corrToggle.type = "button";
+    corrToggle.className = "corr-toggle";
+    corrToggle.textContent = "Voir la correction";
+
+    var corrPanel = document.createElement("div");
+    corrPanel.className = "correction";
+    corrPanel.hidden = true;
+    var stepsWrap = document.createElement("div");
+    stepsWrap.className = "steps";
+    steps.forEach(function (line, idx) {
+      var d = document.createElement("div");
+      d.className = "step-line" + (idx === steps.length - 1 ? " final" : "");
+      d.textContent = line;
+      stepsWrap.appendChild(d);
+    });
+    corrPanel.appendChild(stepsWrap);
+
+    corrToggle.addEventListener("click", function () {
+      corrPanel.hidden = !corrPanel.hidden;
+    });
+
+    el.appendChild(corrToggle);
+    el.appendChild(corrPanel);
+  }
+
+  // ---------- Exercice 1 : QCM ----------
+  function buildQCMItem(item) {
+    var el = document.createElement("div");
+    el.className = "item";
+    el.id = "item-" + item.id;
+
+    var row = document.createElement("div");
+    row.className = "item-row";
+
+    var label = document.createElement("div");
+    label.className = "item-label";
+    label.textContent = item.id.slice(1) + ")";
+    row.appendChild(label);
+
+    var expr = document.createElement("div");
+    expr.className = "expr";
+    expr.textContent = item.expr;
+    row.appendChild(expr);
+    el.appendChild(row);
+
+    var choicesWrap = document.createElement("div");
+    choicesWrap.className = "choices";
+
+    var order = shuffledIndices(item.choices.length, seedFromId(item.id));
+    var buttons = [];
+
+    function applyState() {
+      var res = state.results[item.id];
+      if (res === "correct" || res === "incorrect") {
+        el.dataset.state = res;
+        var chosen = state.answers[item.id];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+          if (b.dataset.origIdx === "0") b.dataset.state = "correct";
+          else if (Number(b.dataset.origIdx) === chosen) b.dataset.state = "incorrect";
+        });
+      }
+    }
+
+    order.forEach(function (origIdx) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice-btn";
+      btn.textContent = item.choices[origIdx];
+      btn.dataset.origIdx = String(origIdx);
+      btn.addEventListener("click", function () {
+        if (state.results[item.id]) return; // deja repondu
+        state.answers[item.id] = origIdx;
+        state.results[item.id] = origIdx === 0 ? "correct" : "incorrect";
+        applyState();
+        updateScore();
+        saveLocal();
+        if (origIdx !== 0) {
+          corrPanelShow();
+        }
+      });
+      buttons.push(btn);
+      choicesWrap.appendChild(btn);
+    });
+
+    el.appendChild(choicesWrap);
+
+    var corrToggleRef, corrPanelRef;
+    function corrPanelShow() { if (corrPanelRef) corrPanelRef.hidden = false; }
+
+    (function () {
+      var corrToggle = document.createElement("button");
+      corrToggle.type = "button";
+      corrToggle.className = "corr-toggle";
+      corrToggle.textContent = "Voir la règle";
+
+      var corrPanel = document.createElement("div");
+      corrPanel.className = "correction";
+      corrPanel.hidden = true;
+      var stepsWrap = document.createElement("div");
+      stepsWrap.className = "steps";
+      item.steps.forEach(function (line, idx) {
+        var d = document.createElement("div");
+        d.className = "step-line" + (idx === item.steps.length - 1 ? "" : " final");
+        d.textContent = line;
+        stepsWrap.appendChild(d);
+      });
+      corrPanel.appendChild(stepsWrap);
+
+      corrToggle.addEventListener("click", function () {
+        corrPanel.hidden = !corrPanel.hidden;
+      });
+
+      el.appendChild(corrToggle);
+      el.appendChild(corrPanel);
+      corrToggleRef = corrToggle;
+      corrPanelRef = corrPanel;
+    })();
+
+    if (state.results[item.id]) {
+      applyState();
+      if (state.results[item.id] === "incorrect") corrPanelShow();
+    }
+
+    return el;
+  }
+
+  // ---------- Exercice 2 : reponse numerique ----------
+  function buildCalcItem(item) {
+    var el = document.createElement("div");
+    el.className = "item";
+    el.id = "item-" + item.id;
+
+    var row = document.createElement("div");
+    row.className = "item-row";
+
+    var label = document.createElement("div");
+    label.className = "item-label";
+    label.textContent = item.id.slice(1) + ")";
+    row.appendChild(label);
+
+    var expr = document.createElement("div");
+    expr.className = "expr";
+    expr.textContent = item.expr;
+    row.appendChild(expr);
+
+    var field = document.createElement("div");
+    field.className = "answer-field";
+
+    var input = document.createElement("input");
+    input.type = "text";
+    input.id = "input-" + item.id;
+    input.autocomplete = "off";
+    input.spellcheck = false;
+    input.placeholder = "…";
+    input.setAttribute("aria-label", "Réponse pour " + item.id);
+
+    var checkBtn = document.createElement("button");
+    checkBtn.type = "button";
+    checkBtn.className = "check-btn";
+    checkBtn.textContent = "Vérifier";
+
+    var status = document.createElement("span");
+    status.className = "status";
+    status.setAttribute("aria-live", "polite");
+
+    field.appendChild(input);
+    field.appendChild(checkBtn);
+    field.appendChild(status);
+    row.appendChild(field);
+    el.appendChild(row);
+
+    buildCorrectionPanel(el, item.steps);
+    var corrPanel = el.querySelector(".correction");
+
+    function applyAnswerState() {
+      var res = state.results[item.id];
+      if (res === "correct") {
+        el.dataset.state = "correct";
+        status.textContent = "✓";
+        status.className = "status correct";
+      } else if (res === "incorrect") {
+        el.dataset.state = "incorrect";
+        status.textContent = "✕";
+        status.className = "status incorrect";
+      } else {
+        delete el.dataset.state;
+        status.textContent = "";
+        status.className = "status";
+      }
+    }
+
+    function doCheck() {
+      var raw = input.value;
+      state.answers[item.id] = raw;
+      var v = parseNumber(raw);
+      var ok = v !== null && Math.abs(v - item.answer) < 0.0005;
+      state.results[item.id] = ok ? "correct" : "incorrect";
+      applyAnswerState();
+      updateScore();
+      saveLocal();
+      if (!ok) corrPanel.hidden = false;
+    }
+
+    checkBtn.addEventListener("click", doCheck);
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); doCheck(); }
+    });
+    input.addEventListener("input", function () {
+      if (el.dataset.state) {
+        delete el.dataset.state;
+        state.results[item.id] = undefined;
+        status.textContent = "";
+        status.className = "status";
+        updateScore();
+        saveLocal();
+      }
+    });
+
+    if (typeof state.answers[item.id] === "string") input.value = state.answers[item.id];
+    if (state.results[item.id]) applyAnswerState();
+
+    return el;
+  }
+
+  function renderAll() {
+    var host1 = document.getElementById("items-1");
+    var host2 = document.getElementById("items-2");
+    host1.innerHTML = "";
+    host2.innerHTML = "";
+    EX1.forEach(function (it) { host1.appendChild(buildQCMItem(it)); });
+    EX2.forEach(function (it) { host2.appendChild(buildCalcItem(it)); });
+    updateScore();
+  }
+
+  function resetAll() {
+    state = { answers: {}, results: {}, openCorrections: {} };
+    saveLocal();
+    renderAll();
+  }
+
+  document.getElementById("reset-btn").addEventListener("click", resetAll);
+
+  // ---------- Boot ----------
+  function start() {
+    var restored = loadLocal();
+    if (restored) state = restored;
+    if (!state.answers) state.answers = {};
+    if (!state.results) state.results = {};
+    if (!state.openCorrections) state.openCorrections = {};
+    renderAll();
+  }
+
+  start();
+})();
+</script>
+
+</body></html>
